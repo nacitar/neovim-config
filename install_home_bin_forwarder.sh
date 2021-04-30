@@ -12,6 +12,10 @@ vim_symlink="$bin_dir/vim"
 if [[ ! -e "$vim_symlink" ]]; then
     ln -s "$nvim_forwarder" "$vim_symlink"
 fi
+vi_symlink="$bin_dir/vi"
+if [[ ! -e "$vi_symlink" ]]; then
+    ln -s "$nvim_forwarder" "$vi_symlink"
+fi
 
 nvimdiff_forwarder="${script_directory}/forward_to_nvimdiff.sh"
 vimdiff_symlink="$bin_dir/vimdiff"
