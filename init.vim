@@ -10,10 +10,12 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
     Plug 'nacitar/a.vim'
+    Plug 'vim-python/python-syntax'
 call plug#end()
 
 " Support Japanese Shift-JIS encoding
 set fileencodings=ucs-bom,utf-8,sjis,default,latin1
+let g:python_highlight_all = 1
 
 if has("autocmd")
     " Use filetype detection and file-based automatic indenting.
