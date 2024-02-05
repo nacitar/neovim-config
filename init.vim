@@ -11,6 +11,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
     Plug 'nacitar/a.vim'
     Plug 'vim-python/python-syntax'
+    Plug 'mhinz/vim-startify'
 call plug#end()
 
 " Support Japanese Shift-JIS encoding
@@ -24,9 +25,13 @@ if has("autocmd")
     " Use actual tab chars in Makefiles.
     autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
     " Detect c++ files, including google-style extensions
-    autocmd BufRead,BufNewFile *.cc,*.cpp,*.h,*.hpp set filetype=cpp
+    autocmd BufRead,BufNewFile *.cc,*.cpp,*.cxx,*.h,*.hpp,*.hxx
+        \ set filetype=cpp
     " Assume Cpp11-Syntax-Support is installed, and change cpp to cpp11
     " au FileType cpp set filetype=cpp11
+
+    autocmd BufRead,BufNewFile *.py,*.sh,*.cc,*.cpp,*.cxx,*.h,*.hpp,*.hxx
+        \ set cc=80
 endif
 
 " For everything else, use a tab width of 4 space chars.
