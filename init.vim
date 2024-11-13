@@ -14,6 +14,9 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'mhinz/vim-startify'
 call plug#end()
 
+" Make :E pick :Explore, and not the newer :EditQuery
+command! -nargs=* E Explore <args>
+
 " Support Japanese Shift-JIS encoding
 set fileencodings=ucs-bom,utf-8,sjis,default,latin1
 let g:python_highlight_all = 1
