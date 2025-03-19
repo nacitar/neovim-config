@@ -9,17 +9,32 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
-    Plug 'nacitar/a.vim'
-    Plug 'vim-python/python-syntax'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'mhinz/vim-startify'
+    Plug 'nacitar/a.vim'
 call plug#end()
+
+lua << EOF
+require('nvim-treesitter.configs').setup {
+  ensure_installed = { "python", "c", "lua", "vim", "bash"},
+  highlight = {
+    enable = true,
+    -- Set this to false to prevent using the regex-based highlighter in addition
+    additional_vim_regex_highlighting = false,
+  },
+  -- If you want other features, like incremental selection, indentation, etc.
+  -- incremental_selection = {
+  --   enable = true,
+  --   ...
+  -- },
+}
+EOF
 
 " Make :E pick :Explore, and not the newer :EditQuery
 command! -nargs=* E Explore <args>
 
 " Support Japanese Shift-JIS encoding
 set fileencodings=ucs-bom,utf-8,sjis,default,latin1
-let g:python_highlight_all = 1
 
 if has("autocmd")
     " Use filetype detection and file-based automatic indenting.
@@ -43,13 +58,9 @@ set shiftwidth=4    " Indents will have a width of 4.
 set softtabstop=4   " Sets the number of columns for a TAB.
 set expandtab       " Expand TABs to spaces. 
 
-if has('gui_running')
-	set guifont=Monospace\ 10
-else
-	" Enable 256 colors
-	if $TERM =~ '256color'
-		set t_Co=256
-	endif
+" Enable 256 colors
+if $TERM =~ '256color'
+    set t_Co=256
 endif
 
 " Automatically indent things
