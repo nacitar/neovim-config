@@ -1,4 +1,3 @@
-"%% SiSU Vim color file
 set background=dark
 hi clear
 if version > 580
